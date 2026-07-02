@@ -9,7 +9,7 @@ const TEST_DIR = path.join(os.tmpdir(), 'vr-test-repo-' + Date.now());
 
 function runCLI(args: string, customEnv?: NodeJS.ProcessEnv) {
   try {
-    return execSync(`node ${CLI_PATH} ${args}`, { cwd: TEST_DIR, encoding: 'utf-8', env: customEnv || process.env });
+    return execSync(`node --no-deprecation ${CLI_PATH} ${args}`, { cwd: TEST_DIR, encoding: 'utf-8', env: customEnv || process.env });
   } catch (err: any) {
     return err.stdout + '\n' + err.stderr;
   }
@@ -34,7 +34,7 @@ describe('VaultRepo CLI E2E', () => {
   it('should error when not logged in and running init', () => {
     const customEnv = { ...process.env, HOME: TEST_DIR };
     try {
-      execSync(`node ${CLI_PATH} init my-repo`, { cwd: TEST_DIR, encoding: 'utf-8', env: customEnv, stdio: 'pipe' });
+      execSync(`node --no-deprecation ${CLI_PATH} init my-repo`, { cwd: TEST_DIR, encoding: 'utf-8', env: customEnv, stdio: 'pipe' });
       expect.fail('Should have thrown an error');
     } catch (err: any) {
       const output = err.stdout?.toString() + err.stderr?.toString();

@@ -8,7 +8,7 @@ esbuild.build({
   target: 'node16',
   outfile: 'dist/cli.js',
   banner: {
-    js: '#!/usr/bin/env node'
+    js: '#!/usr/bin/env -S node --no-deprecation'
   },
   external: ['@supabase/supabase-js', 'commander', 'dotenv'],
 }).catch(() => process.exit(1));

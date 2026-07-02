@@ -1,2 +1,2 @@
 #!/bin/bash
-node "$(dirname "$0")/dist/cli.js" "$@"
+node --no-deprecation "$(dirname "$0")/dist/cli.js" "$@"
